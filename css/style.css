@@ -1,0 +1,108 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 25, 2017, 10:45:57 AM
+    Author     : Ingenieria
+*/
+#Header
+{
+    background-color: #464a4c;
+    color: white;
+    height: auto;
+}
+#fotoHeader
+{
+height: 160px;
+width: 160px;
+margin-top: 15px;        
+}
+
+#menuTop
+{
+    border-color: #464a4c;
+}
+#menuText
+{
+    border-right: 1px solid black;
+}
+#botonPublicar
+{
+    background-color: red;
+    color: white;
+    border-color: black;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+#listaAvisos
+{
+    list-style: none;
+}
+#footer
+{
+    background-color:#464a4c;
+    color:white; 
+}
+
+#titulo
+{
+    padding-left: 15px;
+    text-align: left;
+    margin-top: -10px;
+    margin-bottom: -6px;
+}
+#tituloText
+{
+    padding-left: 15px;
+    text-align: left;
+    vertical-align: text-top;
+}
+
+#fotoBanner
+{
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    align-content: center;
+}
+#divText1
+{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+#botonVer
+{
+    background-color: white;
+    color: black;
+    border-color: black;
+}
+#fotoAviso
+{
+    width: 200px;
+    height: 200px; 
+}
+#botonLogIn
+{
+    background-color: white;
+    color: black;
+    border-color: black;
+}
+
+#inputLogin
+{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    float: right;
+}
+
+#logInZone
+{
+    margin-top: 20px;
+}
+
+#logInButtons
+{
+    margin-top: 10px;
+}
