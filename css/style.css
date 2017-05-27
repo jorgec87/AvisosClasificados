@@ -43,7 +43,9 @@ margin-top: 15px;
 #footer
 {
     background-color:#464a4c;
-    color:white; 
+    color:white;
+    bottom: 0px;
+    position: fixed;
 }
 
 #titulo
@@ -77,6 +79,7 @@ margin-top: 15px;
     background-color: white;
     color: black;
     border-color: black;
+    margin-top: 100px;
 }
 #fotoAviso
 {
@@ -105,4 +108,62 @@ margin-top: 15px;
 #logInButtons
 {
     margin-top: 10px;
+}
+
+#textoFooter
+{
+padding-bottom: 15px;
+}
+
+#menuBottom
+{
+border-bottom-color: #464a4c;
+border-top-color: #464a4c;
+top: 30px;
+left: 100px;
+bottom: 2px;
+}
+
+.navbar-inverse
+{
+background-color: #464a4c;
+border-color: #464a4c;
+}
+
+#textoBienvenido
+{
+    right:-30px;
+    top: 5px;
+    position: absolute;
+    font-size: 20;
+}
+
+#textoUsuario
+{
+    top:5px;
+    left: 30px;
+    position: relative;
+    font-size: 20;
+}
+
+#textoOpUsuario1
+{
+    left: 20px;
+    top: 15px;
+    position: relative;
+    font-size: 18px;
+}
+#textoOpUsuario2
+{
+    left: 20px;
+    top: 15px;
+    margin-left: 5px;
+    position: relative;
+    font-size: 18px;
+}
+
+#loggedZone
+{
+    margin-top: 5px;
+    margin: auto;
 }

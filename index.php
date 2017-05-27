@@ -54,7 +54,7 @@ and open the template in the editor.
                         <div class="col-md-1">
                             <button id="botonVer">Ver</button>
                         </div>
-                    </li>                 
+                    </li>         
                 </ul>  
             </div> 
         </div>
