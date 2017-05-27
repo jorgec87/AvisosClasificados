@@ -13,14 +13,16 @@
             </nav>
             <h1 id="titulo">ANUNCIOS CLASIFICADOS GRATIS</h1><br>
             <span id="tituloText">publica con nosotros es GRATIS y sencillo</span>
-            <button id="botonPublicar">PUBLICAR AVISO</button>
+            <button id="botonMisAvisos">Mis Avisos</button>
         </div>
         <div class="col-md-1">
             <span id="textoBienvenido">Bienvenido:</span>
         </div>
         <div class="col-md-2" id="loggedZone">
-            <span id="textoUsuario">Francisco Armijo Caceres</span>
-            <a id="textoOpUsuario1">Mis Datos</a><a id="textoOpUsuario2">Salir</a>
-             
+            <span id="textoUsuario">Francisco Armijo</span>
+            <div class="row">
+                <a id="textoOpUsuario1" href="#">Mis Datos</a><a id="textoOpUsuario2" href="#">Salir</a>
+            </div>  
         </div>
     </div>
+</div>

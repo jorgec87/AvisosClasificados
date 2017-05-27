@@ -32,7 +32,7 @@ margin-top: 15px;
 {
     background-color: red;
     color: white;
-    border-color: black;
+    border-color: white;
     margin-left: 20px;
     margin-bottom: 10px;
 }
@@ -132,7 +132,7 @@ border-color: #464a4c;
 
 #textoBienvenido
 {
-    right:-30px;
+    right:-150px;
     top: 5px;
     position: absolute;
     font-size: 20;
@@ -141,29 +141,51 @@ border-color: #464a4c;
 #textoUsuario
 {
     top:5px;
-    left: 30px;
+    right: -150px;
     position: relative;
     font-size: 20;
 }
 
 #textoOpUsuario1
 {
-    left: 20px;
-    top: 15px;
+    left: 180px;
+    top: 25px;
     position: relative;
     font-size: 18px;
+    color: #9d9d9d;
+}
+
+#textoOpUsuario1:hover
+{
+    color: white;
+    text-decoration:none;
 }
 #textoOpUsuario2
 {
-    left: 20px;
-    top: 15px;
+    left: 190px;
+    top: 25px;
     margin-left: 5px;
     position: relative;
     font-size: 18px;
+    color: #9d9d9d;
+}
+#textoOpUsuario2:hover
+{
+    color: white;
+    text-decoration:none;
 }
 
 #loggedZone
 {
     margin-top: 5px;
     margin: auto;
+}
+
+#botonMisAvisos
+{
+    background-color: white;
+    color: black;
+    border-color: white;
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
