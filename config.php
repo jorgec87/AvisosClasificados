@@ -2,8 +2,8 @@
 	// DATABASE LOCALHOST
 	$conf['db_hostname'] = "localhost";
 	$conf['db_username'] = "root";
-	$conf['db_password'] = "";
-	$conf['db_name'] = "garve_tracking";
+	$conf['db_password'] = "1234";
+	$conf['db_name'] = "anuncios_beta";
 
 	$conf['path_files'] = "C:/xampp/htdocs/my_garve/archivos_prealerta/";
 

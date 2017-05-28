@@ -7,9 +7,32 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+ <?php 
+         if(isset($_GET['res'])) {
+            if($_GET['res']==1){
+              ?>     
+             <script>
+                   alert('Sus datos han sido ingresados correctamente');
+             </script>
+        
+               <?php
+            } elseif($_GET['res']==2){
+                ?>     
+             <script>
+                   alert('Error!, Su correo ya esta registrado');
+             </script>
+        
+               <?php
+            } 
+        }
+ ?>
+        
+     
     </head>
     <body>
+        <!-- INCLUDE HEADER-->
         <?php require_once './include/include_header_register.php';?>
+        <!-- FIN HEADER-->
         </div>
         
         <div class="container" id="Contenido" >
@@ -21,11 +44,11 @@
                 <div class="panel-body">
                   
                     <div class="container_form" >
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" id="form_usuario" method="POST" action="BO/procesa_registro.php">
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
+                                <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Ingrese su nombre completo">
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre completo">
                                 </div>
                             </div>
                             <fieldset>
@@ -43,32 +66,32 @@
                             <div class="form-group row">
                                 <label for="fecha" class="col-sm-2 col-form-labell">Date</label>
                                 <div class="col-sm-4">
-                                    <input class="form-control" type="date" value="" id="fecha">
+                                    <input class="form-control" name="fecha" type="date" value="" id="fecha">
                                 </div>
                             </div>
                             
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Correo</label>
+                                <label for="email" class="col-sm-2 col-form-label">Correo</label>
                                 <div class="col-sm-4">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Ingrese su correo">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese su correo">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
+                                <label for="usuario" class="col-sm-2 col-form-label">Usuario</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Nombre de usuario">
+                                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Nombre de usuario">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Clave</label>
+                                <label for="clave1" class="col-sm-2 col-form-label">Clave</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Ingrese su clave">
+                                    <input type="text" class="form-control" id="clave1" placeholder="Ingrese su clave">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Confirmar Clave</label>
+                                <label for="clave" class="col-sm-2 col-form-label">Confirmar Clave</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Reingrese su clave">
+                                    <input type="text" class="form-control" name="clave" id="clave" placeholder="Reingrese su clave">
                                 </div>
                             </div>
 
@@ -79,7 +102,7 @@
                                     <button type="submit" class="btn btn-lg btn-primary">Guardar Datos</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-lg btn-warning">Cancelar</button>
+                                    <button type="button" class="btn btn-lg btn-warning">Cancelar</button>
                                 </div>
                             </div>
                         </form>
@@ -92,7 +115,9 @@
                 
             </div>
         </div>
+        <!-- INCLUDE FOOTER-->
 <?php require_once './include/include_footer.php';?>
+         <!-- FIN FOOTER-->
     </body>
 </html>
 
