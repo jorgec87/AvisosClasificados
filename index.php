@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -14,9 +17,31 @@ and open the template in the editor.
         <link rel="shortcut icon" href="http://2.bp.blogspot.com/-ZJNw3suLePk/VSEkX0oyQ2I/AAAAAAAAAZA/6QkRrUjHLNs/s1600/segundamano.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+      <?php 
+      //mensaje de error desde procesa_login
+         if(isset($_GET['error'])) {
+            if($_GET['error']==1 || $_GET['error']==2){
+              ?>     
+             <script>
+                   alert('Error!, sus datos de acceso no son validos');
+             </script>
+        
+               <?php
+            }
+        }
+ ?>
     </head>
     <body>
-        <?php require_once './include/include_header_public.php';?>
+ <?php
+ //validar session y filtrar header
+
+	if (isset($_SESSION['id_cliente'])) {
+		 require_once './include/include_header_private_2.php';
+        }else{
+                 require_once './include/include_header_public.php';
+        }
+?>
+        
         </div>
         <div class="container col-md-offset-1 col-md-11" id="Contenido">
             <div>

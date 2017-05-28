@@ -14,7 +14,7 @@
                     
                     <h1 id="titulo">ANUNCIOS CLASIFICADOS GRATIS</h1><br>
                     <span id="tituloText">publica con nosotros es GRATIS y sencillo</span>
-                    <button id="botonPublicar">PUBLICAR AVISO</button>
+                    <button id="botonPublicar" class="btn">PUBLICAR AVISO</button>
                 </div>
             </div>
         </div>

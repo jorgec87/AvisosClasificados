@@ -6,7 +6,7 @@
         // valida que todos los datos sean recibidos correctamente
         if(!isset($_POST['nombre'])) {
                 $error="Ocurrio un problema con el nombre ingresado";
-        }else{
+        }else{ 
                 $nombre=$_POST['nombre'];
         }
 
