@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	require_once './include/include_valida_session.php';
 ?>
 <!DOCTYPE html>
 <html>
