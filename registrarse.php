@@ -35,13 +35,13 @@
         <!-- FIN HEADER-->
         </div>
         
-        <div class="container" id="Contenido" >
+        <div class="container" id="Contenido" style="margin-bottom:200px;" >
             <div class="page-header" style="margin-top: 220px;">
                     <h1>Registrarse como nuevo usuario <small>Publica gratis con nosotros, de forma facil y sencilla</small></h1>
                 </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Datos</div>
-                <div class="panel-body">
+                <div class="panel-body" >
                   
                     <div class="container_form" >
                         <form class="form-horizontal" id="form_usuario" method="POST" action="BO/procesa_registro.php">
@@ -102,7 +102,7 @@
                                     <button type="submit" class="btn btn-lg btn-primary">Guardar Datos</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn btn-lg btn-warning">Cancelar</button>
+                                    <a href="index.php" class="btn btn-lg btn-warning ">Cancelar</a>
                                 </div>
                             </div>
                         </form>

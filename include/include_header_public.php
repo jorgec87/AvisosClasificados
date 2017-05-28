@@ -22,8 +22,8 @@
                 <div class="row"><span>Clave</span><input type="password" id="inputLogin"></div>
                 <div class="row"><input type="checkbox"><span>Recordarme en este sitio</span></div>
                 <div class="row" id="logInButtons">
-                    <button id="botonLogIn">Iniciar Sesion</button>
-                    <button id="botonLogIn">Registrarse</button>
+                    <button id="botonLogIn" class="btn btn-default">Iniciar Sesion</button>
+                    <a href="/AvisosClasificados/registrarse.php" class="btn btn-default">Registrarse</a>
                 </div>
             </div>   
         </form>
