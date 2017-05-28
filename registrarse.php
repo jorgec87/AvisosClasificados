@@ -86,13 +86,13 @@
                             <div class="form-group row">
                                 <label for="clave1" class="col-sm-2 col-form-label">Clave</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="clave1" placeholder="Ingrese su clave">
+                                    <input type="password" class="form-control" id="clave1" placeholder="Ingrese su clave">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="clave" class="col-sm-2 col-form-label">Confirmar Clave</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="clave" id="clave" placeholder="Reingrese su clave">
+                                    <input type="password" class="form-control" name="clave" id="clave" placeholder="Reingrese su clave">
                                 </div>
                             </div>
 
