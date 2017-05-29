@@ -42,8 +42,43 @@
         // fin validacion de datos recibidos
 
         // confirma que no existan errores
-        if ($error=="") {
-                // realiza el insert en la tabla usuario
+        if ($error=="") 
+            {
+            if ($_POST['clave']=='') 
+                {
+               // realiza el update en la tabla usuario sin pass
+                $db->prepare("UPDATE usuario SET 
+                        nombre=:nombre, 
+                        sexo=:sexo, 
+                        fecha_nacimiento=:fecha_nacimiento, 
+                        correo=:correo, 
+                        WHERE usuario=:usuario;
+                        "
+                        ,true);
+                $db->execute(
+                        array(
+                                ':nombre' => $nombre,
+                                ':sexo' => $sexo,
+                                ':fecha_nacimiento' => $fecha,
+                                ':correo' => $email,
+                                ':usuario' => $usuario,
+                        )
+                );                             
+			// Se inicia la sesion y se crean las variables de sesion
+			session_start();
+			$_SESSION['nombre']=$nombre;
+			$_SESSION['sexo']=$sexo;
+			$_SESSION['fecha']=$fecha;
+			$_SESSION['correo']=$email;
+			$_SESSION['usuario']=$usuario;
+                
+               header("location: ../misDatos.php?res=1");
+
+                $id_usuario=$db->lastId();
+                }
+         else
+             {
+                           // realiza el update en la tabla usuario con pass
                 $db->prepare("UPDATE usuario SET 
                         nombre=:nombre, 
                         sexo=:sexo, 
@@ -62,11 +97,19 @@
                                 ':usuario' => $usuario,
                                 ':password' => sha1($clave)
                         )
-                );
+                );                             
+			// Se inicia la sesion y se crean las variables de sesion
+			session_start();
+			$_SESSION['nombre']=$nombre;
+			$_SESSION['sexo']=$sexo;
+			$_SESSION['fecha']=$fecha;
+			$_SESSION['correo']=$email;
+			$_SESSION['usuario']=$usuario;
                 
-               header("location: ../index.php?res=1");
+               header("location: ../misDatos.php?res=1");
 
-                $id_usuario=$db->lastId();         
+                $id_usuario=$db->lastId();
+             }
         }else
         {
             echo $error;   
