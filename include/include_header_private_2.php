@@ -22,7 +22,7 @@
         <div class="col-md-2" id="loggedZone">
             <span id="textoUsuario"><?php echo $_SESSION['nombre'];?></span>
             <div class="row">
-                <a id="textoOpUsuario1" href="#">Mis Datos</a><a id="textoOpUsuario2" href="BO/cerrar_session.php">Salir</a>
+                <a id="textoOpUsuario1" href="misDatos.php">Mis Datos</a><a id="textoOpUsuario2" href="BO/cerrar_session.php">Salir</a>
             </div>  
         </div>
     </div>

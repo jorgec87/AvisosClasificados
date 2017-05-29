@@ -65,9 +65,9 @@
                             </fieldset>
                             <div class="clearfix"></div>
                             <div class="form-group row">
-                                <label for="fecha" class="col-sm-2 col-form-labell">Date</label>
+                                <label for="fecha_nacimiento" class="col-sm-2 col-form-labell">Fecha De Nacimiento</label>
                                 <div class="col-sm-4">
-                                    <input class="form-control" name="fecha" type="date" value="" id="fecha">
+                                    <input class="form-control" name="fecha_nacimiento" type="date" value="" id="fecha">
                                 </div>
                             </div>
                             

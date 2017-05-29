@@ -16,10 +16,10 @@
                 $sexo=$_POST['sexo'];
         }
 
-        if(!isset($_POST['fecha'])) {
+        if(!isset($_POST['fecha_nacimiento'])) {
                 $error="Ocurrio un problema con el RUT ingresado";
         }else{
-                $fecha=$_POST['fecha'];
+                $fecha=$_POST['fecha_nacimiento'];
         }
 
         if(!isset($_POST['email'])) {

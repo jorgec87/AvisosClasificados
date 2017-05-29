@@ -4,14 +4,14 @@
          $error="";
          
          // valida que todos los datos sean recibidos correctamente
-        if(!isset($_POST['nombre'])) {
+        if(!isset($_POST['usuario'])) {
                 $error="Ocurrio un problema con el usuario ingresado";
         }else{
-                $user=$_POST['nombre'];
+                $user=$_POST['usuario'];
         }
 
         if(!isset($_POST['pass'])) {
-                $error="Ocurrio un problema con el password paterno";
+                $error="Ocurrio un problema con el password";
         }else{
                 $pass=$_POST['pass'];
         }
@@ -63,9 +63,7 @@
 			
 			// Se redirecciona al index
 			header("location: ../index.php?res=1");
-                       // AvisosClasificados/BO/index.php?error=1
-                       
-			
+                       // AvisosClasificados/BO/index.php?error=1			
 		}
 	}
 

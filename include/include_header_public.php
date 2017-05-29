@@ -18,7 +18,7 @@
         </div>
         <form method="POST" action="BO/procesar_login.php">
             <div class="col-md-2" id="logInZone">
-                <div class="row"><span>Usuario</span><input style="color: black;" name="nombre" type="text" id="inputLogin"></div>
+                <div class="row"><span>Usuario</span><input style="color: black;" name="usuario" type="text" id="inputLogin"></div>
                 <div class="row"><span>Clave</span><input type="password" style="color: black;" name="pass" id="inputLogin"></div>
                 <div class="row"><input type="checkbox"><span>Recordarme en este sitio</span></div>
                 <div class="row" id="logInButtons">
