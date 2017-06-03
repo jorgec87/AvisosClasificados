@@ -39,7 +39,7 @@
         <div class="container" id="Contenido" style="margin-bottom:200px;" >
             <div class="page-header" style="margin-top: 220px;">
                     <h1>Registrarse como nuevo usuario <small>Publica gratis con nosotros, de forma facil y sencilla</small></h1>
-                </div>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Datos</div>
                 <div class="panel-body" >
