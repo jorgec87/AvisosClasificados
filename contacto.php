@@ -48,7 +48,7 @@ and open the template in the editor.
                 <img src="http://www.impactourbano.com.ar/images/banner-avisos-clasificados.jpg" class="img-responsive" id="fotoBanner"> 
             </div>
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="margin-bottom: 200px; margin-top: 40px">
                 <div class="panel-heading">Ingrese Sus Datos</div>
                 <div class="panel-body" >                    
                     <div class="container_form col-md-offset-1 col-md-11" >
