@@ -37,7 +37,14 @@ $sql_aviso = $db->get_results("SELECT * FROM anuncios_beta.aviso where id_aviso 
                 border: 1px solid #000;
                 margin: 10px 5px 0 0;
             }
-
+              .form-control.error {
+             border: 1px dotted #cc5965;
+            }
+            label.error {
+            color: #cc5965;
+            display: inline-block;
+            margin-left: 5px;
+           }
         </style>
 
         <?php
@@ -72,7 +79,7 @@ $sql_aviso = $db->get_results("SELECT * FROM anuncios_beta.aviso where id_aviso 
             <div class="panel panel-default col-lg-10 col-lg-offset-1" style="padding: 0; margin-bottom: 200px">
                 <div class="panel-heading">Edita tu aviso</div>
                 <div class="panel-body" >
-                <form class="form-horizontal" id="form_usuario" method="POST" enctype="multipart/form-data" action="BO/actualizarAviso.php">
+                <form class="form-horizontal" id="form_aviso" method="POST" enctype="multipart/form-data" action="BO/actualizarAviso.php">
                     <div class="container col-lg-6" >
                             <div class="form-group row">   
                                 <label for="titulo" class="col-sm-3 col-form-label">Titulo de aviso</label>
@@ -84,7 +91,7 @@ $sql_aviso = $db->get_results("SELECT * FROM anuncios_beta.aviso where id_aviso 
                                 <label for="titulo" class="col-sm-3 col-form-label">Categoria</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="ddlCategoria">
-                                        <option>Seleccione tipo aviso</option>
+                                        <option value="0">Seleccione tipo aviso</option>
                                         <?php
                                         foreach ($sql_categoria as $key => $categoria) 
                                         {
@@ -183,4 +190,58 @@ $sql_aviso = $db->get_results("SELECT * FROM anuncios_beta.aviso where id_aviso 
         </script>
     </body>
 </html>
+<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+
+
+<script>
+ $(document).ready(function(){
+   
+jQuery.extend(jQuery.validator.messages, {
+  required: "Este campo es obligatorio.",
+  remote: "Por favor, rellena este campo.",
+  email: "Por favor, escribe una dirección de correo válida",
+  url: "Por favor, escribe una URL válida.",
+  date: "Por favor, escribe una fecha válida.",
+  dateISO: "Por favor, escribe una fecha (ISO) válida.",
+  number: "Por favor, escribe un número entero válido.",
+  digits: "Por favor, escribe sólo dígitos.",
+  creditcard: "Por favor, escribe un número de tarjeta válido.",
+  equalTo: "Por favor, escribe el mismo valor de nuevo.",
+  accept: "Por favor, escribe un valor con una extensión aceptada.",
+  maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
+  minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
+  rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
+  range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
+  max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
+  min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
+});
+
+   $.validator.addMethod("valueNotEquals", function(value, element, arg){
+  return arg != value;
+ }, "Seleccione una Opcion");
+            //funcion que valida campos
+$("#form_aviso").validate({
+                rules: {
+                    titulo: {
+                        required: true,
+                        minlength: 4
+                    },ddlCategoria: { 
+                        valueNotEquals: "0" 
+                    },resumen: {
+                        required: true,
+                        minlength: 4
+                    },descripcion: {
+                        required: true,
+                        minlength: 4
+                    },precio: {
+                        required: true,
+                        number: true
+                    }
+                }
+            });
+          
+
+           
+       });
+</script>
 

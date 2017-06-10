@@ -139,8 +139,8 @@
 
 
 <script>
-        $(document).ready(function(){
-   $(document).ready(function() {
+ $(document).ready(function(){
+   
 jQuery.extend(jQuery.validator.messages, {
   required: "Este campo es obligatorio.",
   remote: "Por favor, rellena este campo.",
@@ -160,10 +160,10 @@ jQuery.extend(jQuery.validator.messages, {
   max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
   min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
 });
-});
+
           
             //funcion que valida campos
-            $("#form_usuario").validate({
+$("#form_usuario").validate({
                 rules: {
                     nombre: {
                         required: true,
@@ -192,6 +192,3 @@ jQuery.extend(jQuery.validator.messages, {
            
        });
 </script>
- password_again: {
-      equalTo: "#password"
-    }

@@ -11,7 +11,7 @@ $sql_avisos = $db->get_results("SELECT titulo,
                                 precio,
                                 foto,
                                 id_aviso
-                                FROM anuncios_beta.aviso;");
+                                FROM anuncios_beta.aviso where USUARIO_id_usuario = ".$_SESSION['id_cliente'].";");
 
 //         Fin consultas 
 ?>

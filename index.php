@@ -42,6 +42,17 @@ and open the template in the editor.
             }
         }
  ?>
+                <style>
+           .form-control.error {
+             border: 1px dotted #cc5965;
+            }
+            label.error {
+            color: #cc5965;
+            display: inline-block;
+            margin-left: 5px;
+           }
+            
+        </style>
     </head>
     <body>
  <?php
@@ -111,4 +122,48 @@ and open the template in the editor.
 <?php require_once './include/include_footer.php';?>
     </body>
 </html>
+<script src="js/jquery.validate.min.js" type="text/javascript"></script>
 
+<script>
+  
+   $(document).ready(function() {
+jQuery.extend(jQuery.validator.messages, {
+  required: "Este campo es obligatorio.",
+  remote: "Por favor, rellena este campo.",
+  email: "Por favor, escribe una dirección de correo válida",
+  url: "Por favor, escribe una URL válida.",
+  date: "Por favor, escribe una fecha válida.",
+  dateISO: "Por favor, escribe una fecha (ISO) válida.",
+  number: "Por favor, escribe un número entero válido.",
+  digits: "Por favor, escribe sólo dígitos.",
+  creditcard: "Por favor, escribe un número de tarjeta válido.",
+  equalTo: "Por favor, escribe el mismo valor de nuevo.",
+  accept: "Por favor, escribe un valor con una extensión aceptada.",
+  maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
+  minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
+  rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
+  range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
+  max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
+  min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
+});
+
+          
+            //funcion que valida campos
+            $("#form_login").validate({
+                rules: {
+                    usuario: {
+                        required: true,
+                        minlength: 4
+                    },
+                    pass: {
+                        required: true,
+                         minlength: 4
+                    }
+                    
+        }
+            });
+          
+
+           
+       });
+</script>

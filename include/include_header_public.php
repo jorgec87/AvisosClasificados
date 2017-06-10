@@ -18,7 +18,7 @@
             <button type=button id="botonPublicar" class="btn">Publicar Aviso</button>
             </a>
         </div>
-        <form method="POST" action="BO/procesar_login.php">
+        <form method="POST" id="form_login" action="BO/procesar_login.php">
             <div class="col-md-2" id="logInZone">
                 <div class="row"><span>Usuario</span><input style="color: black;" name="usuario" type="text" id="inputLogin"></div>
                 <div class="row"><span>Clave</span><input type="password" style="color: black;" name="pass" id="inputLogin"></div>

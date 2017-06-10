@@ -17,7 +17,17 @@ and open the template in the editor.
         <link rel="shortcut icon" href="http://2.bp.blogspot.com/-ZJNw3suLePk/VSEkX0oyQ2I/AAAAAAAAAZA/6QkRrUjHLNs/s1600/segundamano.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    
+      <style>
+         
+              .form-control.error {
+             border: 1px dotted #cc5965;
+            }
+            label.error {
+            color: #cc5965;
+            display: inline-block;
+            margin-left: 5px;
+           }
+        </style>
         <?php
         if (isset($_GET['res'])) {
             if ($_GET['res'] == 1) {
@@ -59,7 +69,7 @@ and open the template in the editor.
                 <div class="panel-heading">Ingrese Sus Datos</div>
                 <div class="panel-body" >                    
                     <div class="container_form col-md-offset-1 col-md-11" >
-                        <form class="form-horizontal" id="form_usuario" method="POST" action="BO/procesar_contacto.php">
+                        <form class="form-horizontal" id="form_contacto" method="POST" action="BO/procesar_contacto.php">
                             <div class="form-group row">
                                 <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                                 <div class="col-sm-6">
@@ -104,3 +114,52 @@ and open the template in the editor.
     </body>
 </html>
 
+<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+
+<script>
+ $(document).ready(function(){
+   
+jQuery.extend(jQuery.validator.messages, {
+  required: "Este campo es obligatorio.",
+  remote: "Por favor, rellena este campo.",
+  email: "Por favor, escribe una dirección de correo válida",
+  url: "Por favor, escribe una URL válida.",
+  date: "Por favor, escribe una fecha válida.",
+  dateISO: "Por favor, escribe una fecha (ISO) válida.",
+  number: "Por favor, escribe un número entero válido.",
+  digits: "Por favor, escribe sólo dígitos.",
+  creditcard: "Por favor, escribe un número de tarjeta válido.",
+  equalTo: "Por favor, escribe el mismo valor de nuevo.",
+  accept: "Por favor, escribe un valor con una extensión aceptada.",
+  maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
+  minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
+  rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
+  range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
+  max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
+  min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
+});
+
+
+  //funcion que valida campos
+$("#form_contacto").validate({
+                rules: {
+                    nombre: {
+                        required: true,
+                        minlength: 4
+                    },email: { 
+                         required: true,
+                        email: true 
+                    },telefono: {
+                        required: true,
+                        number: true
+                    },consulta: {
+                        required: true,
+                        minlength: 4
+                    }
+                }
+            });
+          
+
+           
+       });
+</script>
