@@ -8,7 +8,14 @@
         // CORREO 
         $conf['email'] = "avisos.clasificados.g@gmail.com";
         $conf['email_password'] = "avisos2017";
-        // CORREO 
+        
+        
+        // RUTA PATH DEL SERVIDOR
+        $puerto =80;
+        $server ='http://localhost:'.$puerto.'/AvisosClasificados/';
+        
+        $conf['name_server'] = $server;
+        
        
 
         //RUTA PATH DONDE SE GUARDAN LAS IMAGENES

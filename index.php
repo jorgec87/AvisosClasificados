@@ -12,6 +12,8 @@ $sql_aviso = $db->get_results("SELECT titulo,
                                 id_aviso
                                 FROM anuncios_beta.aviso;");
 
+
+
 ?>
 <!DOCTYPE html>
 <!--

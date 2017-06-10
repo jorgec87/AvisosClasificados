@@ -20,9 +20,9 @@
         </div>
         <form method="POST" id="form_login" action="BO/procesar_login.php">
             <div class="col-md-2" id="logInZone">
-                <div class="row"><span>Usuario</span><input style="color: black;" name="usuario" type="text" id="inputLogin"></div>
-                <div class="row"><span>Clave</span><input type="password" style="color: black;" name="pass" id="inputLogin"></div>
-                <div class="row"><input type="checkbox"><span>Recordarme en este sitio</span></div>
+                <div class="row"><span>Usuario</span><input style="color: black;" name="usuario" value="<?php if(isset($_COOKIE['user'])) echo $_COOKIE['user']; ?>" type="text" id="inputLogin"></div>
+                <div class="row"><span>Clave</span><input type="password" style="color: black;" value="<?php if(isset($_COOKIE['pass'])) echo $_COOKIE['pass']; ?>" name="pass" id="inputLogin"></div>
+                <div class="row"><input type="checkbox" value="1" <?php if(isset($_COOKIE['user'])) echo 'checked' ?> name="cookie"><span>Recordarme en este sitio</span></div>
                 <div class="row" id="logInButtons">
                     <button type="submit" id="botonLogIn" class="btn btn-default">Iniciar Sesion</button>
                     <a href="/AvisosClasificados/registrarse.php" class="btn btn-default">Registrarse</a>

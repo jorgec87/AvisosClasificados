@@ -15,6 +15,8 @@
         }else{
                 $pass=$_POST['pass'];
         }
+        
+     
        
 	  // fin validacion de datos recibidos
 
@@ -60,8 +62,25 @@
 			$_SESSION['fecha']=$fecha;
 			$_SESSION['correo']=$correo;
 			$_SESSION['usuario']=$usuario;
+                        
+                        // Se verifica si usuario quiere guardar datos de acceso en Cookie
+                        
+                        if(isset($_POST['cookie'])) {
+                          if ($_POST["cookie"]=="1"){
+                           
+                            // se setea cookie y se guarda en el computador
+                            setcookie("user", $user , time()+604800,'/');
+                            setcookie("pass", $pass, time()+604800,'/');
+                            
+                         }
+                        }else{
+                             setcookie("user", $user , time()-604800,'/');
+                             setcookie("pass", $pass, time()-604800,'/');
+                             
+                         }
 			
-			// Se redirecciona al index
+                         
+			//Se redirecciona al index
 			header("location: ../index.php?res=1");
                        // AvisosClasificados/BO/index.php?error=1			
 		}

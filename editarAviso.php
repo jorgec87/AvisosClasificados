@@ -1,6 +1,7 @@
 <?php
 require_once './include/include_valida_session.php';
 require_once './EasyPDO/conexionPDO.php';
+require_once './config.php';
 
    if(!isset($_GET['id'])) {
                 $error="Ocurrio un problema con los datos ingresados";
@@ -153,7 +154,7 @@ $sql_aviso = $db->get_results("SELECT * FROM anuncios_beta.aviso where id_aviso 
                             <span class='label label-info' id="upload-file-info"></span>
                         </div>
 
-                        <output id="list" ><img class="thumb" src="<?php echo 'http://'.$_SERVER['SERVER_NAME'].'/AvisosClasificados/img_avisos/'.$_SESSION['id_cliente'].'/'.$sql_aviso[0]->foto ?>" alt="Sin Imagen"/></output>
+                        <output id="list" ><img class="thumb" src="<?php echo $conf['name_server'].'img_avisos/'.$_SESSION['id_cliente'].'/'.$sql_aviso[0]->foto ?>" alt="Sin Imagen"/></output>
                     </div>
                     </form>
                 </div> 
