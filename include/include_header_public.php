@@ -14,7 +14,9 @@
 
             <h1 id="titulo">ANUNCIOS CLASIFICADOS GRATIS</h1><br>
             <span id="tituloText">publica con nosotros es GRATIS y sencillo</span>
-            <button id="botonPublicar" class="btn">Publicar Aviso</button>
+            <a href="/AvisosClasificados/registrarse.php" >
+            <button type=button id="botonPublicar" class="btn">Publicar Aviso</button>
+            </a>
         </div>
         <form method="POST" action="BO/procesar_login.php">
             <div class="col-md-2" id="logInZone">

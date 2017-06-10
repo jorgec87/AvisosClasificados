@@ -36,16 +36,17 @@ margin-top: 15px;
     margin-left: 20px;
     margin-bottom: 10px;
 }
-#listaAvisos
+.listaAvisos
 {
     list-style: none;
 }
 #footer
 {
-    background-color:#464a4c;
-    color:white;
-    bottom: 0px;
-    position: fixed;
+    background-color: #464a4c;
+    color: white;
+    /* bottom: 0px; */
+    /* position: fixed; */
+    margin-top: 15px;
 }
 
 #titulo
@@ -135,7 +136,7 @@ border-color: #464a4c;
     right:-150px;
     top: 5px;
     position: absolute;
-    font-size: 20;
+    font-size: 20px;
 }
 
 #textoUsuario
@@ -143,7 +144,7 @@ border-color: #464a4c;
     top:5px;
     right: -150px;
     position: relative;
-    font-size: 20;
+    font-size: 20px;
 }
 
 #textoOpUsuario1

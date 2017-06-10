@@ -1,5 +1,17 @@
 <?php
-	session_start();
+require_once './EasyPDO/conexionPDO.php';
+
+session_start();
+        
+$sql_aviso = $db->get_results("SELECT titulo,
+                                (select nombre_categoria from anuncios_beta.categoria where id_categoria = CATEGORIA_id_categora) categoria,
+                                USUARIO_id_usuario,
+                                descripcion,
+                                precio,
+                                foto,
+                                id_aviso
+                                FROM anuncios_beta.aviso;");
+
 ?>
 <!DOCTYPE html>
 <!--
@@ -54,33 +66,45 @@ and open the template in the editor.
             <div class="col-md-10">
                 <ul>
                     <h3>BUSQUEDA DE AVISOS CLASIFICADOS</h3>
-                    <li class="row" id="listaAvisos">
+                    
+                       
+                        <?php
+                        foreach ($sql_aviso as $key => $aviso) 
+                        {?>
+                    <li class="row listaAvisos">                   
                         <div class="col-md-3">
+                            <?php 
+                            if ($aviso->foto == null || $aviso->foto == '') 
+                            {
+                            ?>
                             <img src="http://icon-icons.com/icons2/79/PNG/256/misc_box_15274.png" class="img-responsive">
+                            <?php    
+                            }else
+                            {
+                            ?>
+                            <img src="<?php echo 'http://'.$_SERVER['SERVER_NAME'].':82'?>/AvisosClasificados/img_avisos/<?php echo $aviso->USUARIO_id_usuario;?>/<?php echo $aviso->foto; ?>" alt="Sin Imagen" width="200" height="200" class="img-responsive">                       
+                            <?php    
+                            }
+                            ?>                         
                         </div>
                         <div class="col-md-3">
-                            <p>ELECTRÓNICA TAKAME, S.A. DE C.V.</p>
-                            <p>25 de Mayo del 2017.</p><br>
-                            <p>Precio: $ Variable.</p>
+                            <p><?php echo $aviso->titulo;?></p>
+                            <br>
+                            <p><?php echo $aviso->precio;?></p>
                         </div>
-                        <div class="col-md-5">
-                            <p>COMUNICADO (tipo de aviso)</p>
+                        <div class="col-md-6">
+                            <p>Categoria:<?php echo $aviso->categoria;?></p>
                             <p>
-                                Se comunica a todo el personal que el próximo 
-                                lunes 30 de abril del año en curso,  se presentará en 
-                                oficinas centrales de esta Empresa,  
-                                el Presidente del Consorcio Mundial TAKAWE,  
-                                por lo que en su honor se ofrecerá una comida en el Centro Libanes de la Cd.  
-                                de México a partir de las 15:00 horas.    La bienvenida estará a cargo de 
-                                nuestro Director de la Planta Nogales,  Sr.  Oko Na-gazawa,  por lo cual,  
-                                les rogamos su puntual asistencia. Los boletos serán personales y podrán recogerlos en 
-                                la Gerencia Administrativa,  así como los viáticos correspondientes,  a partir de hoy.
+                                Descripcion:<br>
+                                <?php echo $aviso->descripcion;?>
                             </p>
                         </div>
-                        <div class="col-md-1">
-                            <button id="botonVer">Ver</button>
-                        </div>
-                    </li>         
+                        <!-- <div class="col-md-1">
+                            <button id="botonVer">Ver</button> 
+                             </div> -->
+                    </li>                                              
+                        <?php              
+                        }?>	       
                 </ul>  
             </div> 
         </div>
