@@ -127,7 +127,7 @@ $sql_aviso = $db->get_results("SELECT * FROM anuncios_beta.aviso where id_aviso 
                             <input type="hidden" name="id_aviso" value="<?php echo $sql_aviso[0]->id_aviso;?>" >
                             <div class="form-group row">
                                 <div class="col-sm-3 col-md-offset-3">
-                                    <a href="index.php" class="btn btn-lg btn-warning ">Cancelar</a>
+                                    <a href="misAvisos.php" class="btn btn-lg btn-warning ">Cancelar</a>
                                 </div>
                                 <div class="col-sm-3 col-md-offset-2">
                                     <button type="submit" class="btn btn-lg btn-primary">Guardar Aviso</button>

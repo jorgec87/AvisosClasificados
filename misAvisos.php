@@ -55,7 +55,7 @@ $sql_avisos = $db->get_results("SELECT titulo,
                          <td><strong><?php echo $aviso->titulo; ?></strong></td>
                         <td><?php echo $aviso->categoria; ?></td>
                         <td><?php echo $fecha_actual ?></td>
-                        <td><?php echo $aviso->precio; ?></td>
+                        <td>$ <?php echo $aviso->precio; ?></td>
                         <td><img src="<?php echo 'http://'.$_SERVER['SERVER_NAME'].'/AvisosClasificados/img_avisos/'.$_SESSION['id_cliente'].'/'.$aviso->foto ?>" alt="Sin Imagen" width="100" height="100" class="img-responsive"></td>
                         <td>
                             <a href="editarAviso.php?id=<?php echo $aviso->id_aviso; ?>" class="btn btn-block  btn-warning"><span class="glyphicon glyphicon-pencil"></span>  Editar</a>
