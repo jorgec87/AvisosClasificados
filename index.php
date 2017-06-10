@@ -3,16 +3,15 @@ require_once './EasyPDO/conexionPDO.php';
 
 session_start();
         
-$sql_aviso = $db->get_results("SELECT titulo,
+$sql_aviso = $db->get_results("SELECT UPPER(titulo) titulo,
                                 (select nombre_categoria from anuncios_beta.categoria where id_categoria = CATEGORIA_id_categora) categoria,
                                 USUARIO_id_usuario,
                                 descripcion,
                                 precio,
                                 foto,
+                                DATE_FORMAT(fecha_aviso, '%d/%m/%Y') fecha_aviso,
                                 id_aviso
                                 FROM anuncios_beta.aviso;");
-
-
 
 ?>
 <!DOCTYPE html>
@@ -31,6 +30,17 @@ and open the template in the editor.
         <link rel="shortcut icon" href="http://2.bp.blogspot.com/-ZJNw3suLePk/VSEkX0oyQ2I/AAAAAAAAAZA/6QkRrUjHLNs/s1600/segundamano.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+         <style>
+           .form-control.error {
+             border: 1px dotted #cc5965;
+            }
+            label.error {
+            color: #cc5965;
+            display: inline-block;
+            margin-left: 5px;
+           }
+            
+        </style>
       <?php 
       //mensaje de error desde procesa_login
          if(isset($_GET['error'])) {
@@ -44,17 +54,6 @@ and open the template in the editor.
             }
         }
  ?>
-                <style>
-           .form-control.error {
-             border: 1px dotted #cc5965;
-            }
-            label.error {
-            color: #cc5965;
-            display: inline-block;
-            margin-left: 5px;
-           }
-            
-        </style>
     </head>
     <body>
  <?php
@@ -90,25 +89,33 @@ and open the template in the editor.
                             if ($aviso->foto == null || $aviso->foto == '') 
                             {
                             ?>
-                            <img src="http://icon-icons.com/icons2/79/PNG/256/misc_box_15274.png" class="img-responsive">
+                            <img src="http://icon-icons.com/icons2/79/PNG/256/misc_box_15274.png" class="imagenListaAvisos">
                             <?php    
                             }else
                             {
                             ?>
-                            <img src="<?php echo 'http://'.$_SERVER['SERVER_NAME'].':82'?>/AvisosClasificados/img_avisos/<?php echo $aviso->USUARIO_id_usuario;?>/<?php echo $aviso->foto; ?>" alt="Sin Imagen" width="200" height="200" class="img-responsive">                       
+                            <img src="<?php echo 'http://'.$_SERVER['SERVER_NAME'].':82'?>/AvisosClasificados/img_avisos/<?php echo $aviso->USUARIO_id_usuario;?>/<?php echo $aviso->foto; ?>" class="imagenListaAvisos">                       
                             <?php    
                             }
                             ?>                         
                         </div>
-                        <div class="col-md-3">
-                            <p><?php echo $aviso->titulo;?></p>
+                        <div class="col-md-3 dashBorder">
+                            <p class="tituloListaAvisos"><?php echo $aviso->titulo;?></p>
                             <br>
-                            <p><?php echo $aviso->precio;?></p>
+                            <p>
+                                <span class="textoAvisoNegrita">Fecha:</span><br> 
+                                <?php echo $aviso->fecha_aviso;?>
+                            </p><br>
+                            <p><span class="textoAvisoNegrita">Precio:</span><br> 
+                                $<?php echo $aviso->precio;?>
+                            </p>
                         </div>
                         <div class="col-md-6">
-                            <p>Categoria:<?php echo $aviso->categoria;?></p>
+                            <p><span class="textoAvisoNegrita">Categoria:</span><br> 
+                                <?php echo $aviso->categoria;?>
+                            </p>
                             <p>
-                                Descripcion:<br>
+                                <span class="textoAvisoNegrita">Descripcion:</span><br>
                                 <?php echo $aviso->descripcion;?>
                             </p>
                         </div>
@@ -123,8 +130,7 @@ and open the template in the editor.
         </div>
 <?php require_once './include/include_footer.php';?>
     </body>
-</html>
-<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="js/jquery.validate.min.js" type="text/javascript"></script>
 
 <script>
   
@@ -169,3 +175,8 @@ jQuery.extend(jQuery.validator.messages, {
            
        });
 </script>
+    
+    
+    
+</html>
+

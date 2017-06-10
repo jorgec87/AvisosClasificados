@@ -3,7 +3,9 @@
         require_once '../config.php';
         require_once '../EasyPDO/conexionPDO.php';
 
-        $fecha_actual=date("Y-m-d H:i:s");
+        $fecha_actual=date("Y-m-d H:i:s"); 
+        $fecha=date("Y-m-d");
+        
         $id_usu=$_SESSION['id_cliente'];
         $error="";
 
@@ -55,6 +57,7 @@
                        resumen=:resumen,
                        descripcion=:descripcion,
                        precio=:precio,
+                       fecha_aviso=:fecha_aviso,
                        USUARIO_id_usuario=:id_usu,
                        CATEGORIA_id_categora=:categoria
 
@@ -64,12 +67,13 @@
                        ':resumen' => $resumen,
                        ':descripcion' => $descripcion,
                        ':precio' => $precio,
+                       ':fecha_aviso' => $fecha,
                        ':id_usu' => $id_usu,
                        ':categoria' => $categoria
                        
                ));
               
-              header("location: ../publicarAviso.php?res=1");
+            header("location: ../publicarAviso.php?res=1");
                  
         }else{
             // Recibo los datos de la imagen
@@ -110,6 +114,7 @@
                        resumen=:resumen,
                        descripcion=:descripcion,
                        precio=:precio,
+                       fecha_aviso=:fecha_aviso,
                        foto=:foto,
                        USUARIO_id_usuario=:id_usu,
                        CATEGORIA_id_categora=:categoria
@@ -120,6 +125,7 @@
                        ':resumen' => $resumen,
                        ':descripcion' => $descripcion,
                        ':precio' => $precio,
+                       ':fecha_aviso' => $fecha,
                        ':foto' => $nombre_img ,
                        ':id_usu' => $id_usu,
                        ':categoria' => $categoria
@@ -127,7 +133,7 @@
                ));
                // fin registro tabla aviso
                
-                  header("location: ../publicarAviso.php?res=1");
+              header("location: ../publicarAviso.php?res=1");
                  
                 }
                  } 

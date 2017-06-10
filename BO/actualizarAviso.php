@@ -4,6 +4,7 @@
         require_once '../EasyPDO/conexionPDO.php';
 
         $fecha_actual=date("Y-m-d H:i:s");
+        $fecha=date("Y-m-d");
         $id_usu=$_SESSION['id_cliente'];
         $error="";
 
@@ -61,6 +62,7 @@
                        resumen=:resumen,
                        descripcion=:descripcion,
                        precio=:precio,
+                       fecha_actual=:fecha_aviso,
                        USUARIO_id_usuario=:id_usu,
                        CATEGORIA_id_categora=:categoria
                        WHERE id_aviso=:id_aviso;
@@ -72,6 +74,7 @@
                        ':resumen' => $resumen,
                        ':descripcion' => $descripcion,
                        ':precio' => $precio,
+                       ':fecha_aviso' => $fecha,
                        ':id_usu' => $id_usu,
                        ':categoria' => $categoria              
                ));
@@ -81,9 +84,10 @@
                         $_SESSION['id_aviso']=$id_aviso;
                         $_SESSION['id_categoria']=$categoria;
 			$_SESSION['titulo']=$titulo;
-			$_SESSION['resumen']=resumen;
+			$_SESSION['resumen']=$resumen;
 			$_SESSION['descripcion']=$descripcion;
 			$_SESSION['precio']=$precio;
+                        $_SESSION['fecha_aviso']=$fecha_actual;
                         $_SESSION['id_usuario']=$id_usu;
               
               header("location: ../editarAviso.php?res=1");
@@ -138,6 +142,7 @@
                        ':resumen' => $resumen,
                        ':descripcion' => $descripcion,
                        ':precio' => $precio,
+                       ':precio' => $fecha,
                        ':foto' => $nombre_img ,
                        ':id_usu' => $id_usu,
                        ':categoria' => $categoria                      
@@ -149,9 +154,10 @@
                         $_SESSION['id_aviso']=$id_aviso;
                         $_SESSION['id_categoria']=$categoria;
 			$_SESSION['titulo']=$titulo;
-			$_SESSION['resumen']=resumen;
+			$_SESSION['resumen']=$resumen;
 			$_SESSION['descripcion']=$descripcion;
 			$_SESSION['precio']=$precio;
+                        $_SESSION['fecha_aviso']=$fecha;
                         $_SESSION['foto']=$nombre_img;
                         $_SESSION['id_usuario']=$id_usu;
                

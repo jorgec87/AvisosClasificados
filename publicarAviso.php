@@ -25,7 +25,6 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
                 border: 1px solid #000;
                 margin: 10px 5px 0 0;
             }
-
            .form-control.error {
              border: 1px dotted #cc5965;
             }
@@ -35,9 +34,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
             margin-left: 5px;
            }
             
-        
         </style>
-
      
 
     </head>
@@ -66,7 +63,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
                                 <label for="titulo" class="col-sm-3 col-form-label">Categoria</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="ddlCategoria">
-                                        <option value="0">Seleccione tipo aviso</option>
+                                        <option>Seleccione tipo aviso</option>
                                         <?php
                                         foreach ($sql_categoria as $key => $categoria) {
                                             ?>									
@@ -103,11 +100,11 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-lg btn-primary">Guardar Aviso</button>
-                                </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-3 col-md-offset-3">
                                     <a href="index.php" class="btn btn-lg btn-warning ">Cancelar</a>
+                                </div>
+                                <div class="col-sm-3 col-md-offset-2">
+                                    <button type="submit" class="btn btn-lg btn-primary">Guardar Aviso</button>
                                 </div>
                             </div>
                     </div>
@@ -185,10 +182,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
 
             document.getElementById('files').addEventListener('change', archivo, false);
         </script>
-    </body>
-</html>
-
-<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
 
 
 <script>
@@ -242,3 +236,8 @@ $("#form_aviso").validate({
            
        });
 </script>
+        
+    </body>
+</html>
+
+
