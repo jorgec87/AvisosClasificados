@@ -4,8 +4,22 @@
 	$conf['db_username'] = "root";
         $conf['db_password'] = "1234"; //quitar comentario / para la wea po XD!
 	$conf['db_name'] = "anuncios_beta";
+        
+        // CORREO 
+        $conf['email'] = "avisos.clasificados.g@gmail.com";
+        $conf['email_password'] = "avisos2017";
+        // CORREO 
+       
 
         //RUTA PATH DONDE SE GUARDAN LAS IMAGENES
 	$conf['path_files'] = "C:/xampp/htdocs/AvisosClasificados/img_avisos";
+        
+        
+        
+        
+        
+        
+        
+        
 
 ?>
