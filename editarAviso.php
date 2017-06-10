@@ -1,30 +1,24 @@
 <?php
-//require_once './include/include_valida_session.php';
+require_once './include/include_valida_session.php';
 require_once './EasyPDO/conexionPDO.php';
+
+   if(!isset($_GET['id'])) {
+                $error="Ocurrio un problema con los datos ingresados";
+        }else{ 
+                $id=$_GET['id'];
+        }
 
 //        Consulta a la tablas categoria
 
 $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
+$sql_aviso = $db->get_results("SELECT * FROM anuncios_beta.aviso where id_aviso = $id");
+    
+ 
+
 
 //         Fin consultas 
 
-// Se inicia la sesion y se crean las variables de sesion
-			session_start();
-			$_SESSION['id_aviso']=$id_aviso;
-                        $_SESSION['id_categoria']=$id_categoria;
-			$_SESSION['titulo']=$titulo;
-			$_SESSION['resumen']=$resumen;
-			$_SESSION['descripcion']=$descripcion;
-			$_SESSION['precio']=$precio;
-                        if ($_SESSION['foto'] == "" || $_SESSION['foto'] == null ) 
-                            {
-                             $foto = $db->get_results("SELECT foto FROM aviso where id_aviso=$id_aviso");
-                            }
-                        else
-                            {
-			$_SESSION['foto']=$foto;
-                            }
-                        $_SESSION['id_usuario']=$id_usuario;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -83,7 +77,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
                             <div class="form-group row">   
                                 <label for="titulo" class="col-sm-3 col-form-label">Titulo de aviso</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="nombre" name="titulo" value="<?php echo $id_titulo ?>">
+                                    <input type="text" class="form-control" id="nombre" name="titulo" value="<?php echo $sql_aviso[0]->titulo ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -94,7 +88,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
                                         <?php
                                         foreach ($sql_categoria as $key => $categoria) 
                                         {
-                                            if ($categoria->id_categoria == $id_categoria) 
+                                            if ($categoria->id_categoria == $sql_aviso[0]->CATEGORIA_id_categora) 
                                             { ?>
                                         <option value="<?php echo $categoria->id_categoria; ?>" selected="<?php $id_categoria?>" ><?php echo $categoria->nombre_categoria; ?></option>        
                                            <?php }
@@ -113,24 +107,24 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
                             <div class="form-group row">
                                 <label for="resumen" class="col-sm-3 col-form-label">Resumen del aviso</label>
                                 <div class="col-sm-9">
-                                    <textarea style="resize:none" rows="2" class="form-control" name="resumen"  id="resumen"><?php echo $resumen; ?></textarea>
+                                    <textarea style="resize:none" rows="2" class="form-control" name="resumen"  id="resumen"><?php echo $sql_aviso[0]->resumen; ?></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="descripcion" class="col-sm-3 col-form-label">Descripción del aviso</label>
                                 <div class="col-sm-9">
-                                    <textarea style="resize:none" rows="6" class="form-control" name="descripcion"  id="descripcion"><?php echo $descripcion; ?></textarea>
+                                    <textarea style="resize:none" rows="6" class="form-control" name="descripcion"  id="descripcion"><?php echo $sql_aviso[0]->descripcion; ?></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="precio" class="col-sm-3 col-form-label">Precio</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="precio" name="precio" value="<?php echo $precio ?>">
+                                    <input type="text" class="form-control" id="precio" name="precio" value="<?php echo $sql_aviso[0]->precio ?>">
                                 </div>
                             </div>
-                            <input type="hidden" name="id_aviso" value="<?php echo $id_aviso;?>" >
+                            <input type="hidden" name="id_aviso" value="<?php echo $sql_aviso[0]->id_aviso;?>" >
                             <div class="form-group row">
                                 <div class="col-sm-3 col-md-offset-3">
                                     <a href="index.php" class="btn btn-lg btn-warning ">Cancelar</a>
@@ -152,10 +146,10 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
                             <span class='label label-info' id="upload-file-info"></span>
                         </div>
 
-                        <output id="list"<img class="thumb" src="<?php echo $conf['path_files'].'/'.$id_usuario.'/'.$foto; ?>" title=""/></output>
+                        <output id="list" ><img class="thumb" src="<?php echo 'http://'.$_SERVER['SERVER_NAME'].'/AvisosClasificados/img_avisos/'.$_SESSION['id_cliente'].'/'.$sql_aviso[0]->foto ?>" alt="Sin Imagen"/></output>
                     </div>
                     </form>
-                </div>
+                </div> 
             </div>   
 
         </div>

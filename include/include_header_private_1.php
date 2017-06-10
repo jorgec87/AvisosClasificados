@@ -13,7 +13,7 @@
             </nav>
             <h1 id="titulo">ANUNCIOS CLASIFICADOS GRATIS</h1><br>
             <span id="tituloText">publica con nosotros es GRATIS y sencillo</span>
-            <button class="btn" id="botonMisAvisos">Mis Avisos</button>
+              <a href="misAvisos.php" id="botonMisAvisos" class="btn">Mis Avisos</a>
         </div>
         <div class="col-md-1">
             <span id="textoBienvenido">Bienvenido:</span>

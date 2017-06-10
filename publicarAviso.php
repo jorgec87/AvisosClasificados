@@ -28,25 +28,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
 
         </style>
 
-        <?php
-        if (isset($_GET['res'])) {
-            if ($_GET['res'] == 1) {
-                ?>     
-                <script>
-                    alert('Sus aviso se ha registrado correctamente');
-                </script>
-
-                <?php
-            } elseif ($_GET['res'] == 2) {
-                ?>     
-                <script>
-                    alert('Error!,');
-                </script>
-
-                <?php
-            }
-        }
-        ?>
+     
 
     </head>
     <body>
@@ -147,6 +129,26 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
         </div>
         <?php require_once './include/include_footer.php'; ?>
 
+        
+           <?php
+        if (isset($_GET['res'])) {
+            if ($_GET['res'] == 1) {
+                ?>     
+                <script>
+                    alert('Sus aviso se ha registrado correctamente');
+                </script>
+
+                <?php
+            } elseif ($_GET['res'] == 2) {
+                ?>     
+                <script>
+                    alert('Error!,');
+                </script>
+
+                <?php
+            }
+        }
+        ?>
         <script>
             function archivo(evt) {
                 var files = evt.target.files; // FileList object

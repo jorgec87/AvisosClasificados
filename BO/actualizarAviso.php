@@ -155,7 +155,7 @@
                         $_SESSION['foto']=$nombre_img;
                         $_SESSION['id_usuario']=$id_usu;
                
-                  header("location: ../editarAviso.php?res=1");
+                  header("location: ../misAvisos.php?res=2");
                  
                 }
                  } 
