@@ -17,19 +17,26 @@ and open the template in the editor.
         <link rel="shortcut icon" href="http://2.bp.blogspot.com/-ZJNw3suLePk/VSEkX0oyQ2I/AAAAAAAAAZA/6QkRrUjHLNs/s1600/segundamano.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-      <?php 
-      //mensaje de error desde procesa_login
-         if(isset($_GET['error'])) {
-            if($_GET['error']==1 || $_GET['error']==2){
-              ?>     
-             <script>
-                   alert('Error!, sus datos de acceso no son validos');
-             </script>
-        
-               <?php
+    
+        <?php
+        if (isset($_GET['res'])) {
+            if ($_GET['res'] == 1) {
+                ?>     
+                <script>
+                    alert('Sus Consulta se ha enviado correctamente');
+                </script>
+
+                <?php
+            } elseif ($_GET['res'] == 2) {
+                ?>     
+                <script>
+                    alert('Error!,');
+                </script>
+
+                <?php
             }
         }
- ?>
+        ?>
     </head>
     <body>
  <?php
