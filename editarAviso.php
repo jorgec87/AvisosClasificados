@@ -1,5 +1,5 @@
 <?php
-require_once './include/include_valida_session.php';
+//require_once './include/include_valida_session.php';
 require_once './EasyPDO/conexionPDO.php';
 
 //        Consulta a la tablas categoria
@@ -7,6 +7,24 @@ require_once './EasyPDO/conexionPDO.php';
 $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
 
 //         Fin consultas 
+
+// Se inicia la sesion y se crean las variables de sesion
+			session_start();
+			$_SESSION['id_aviso']=$id_aviso;
+                        $_SESSION['id_categoria']=$id_categoria;
+			$_SESSION['titulo']=$titulo;
+			$_SESSION['resumen']=$resumen;
+			$_SESSION['descripcion']=$descripcion;
+			$_SESSION['precio']=$precio;
+                        if ($_SESSION['foto'] == "" || $_SESSION['foto'] == null ) 
+                            {
+                             $foto = $db->get_results("SELECT foto FROM aviso where id_aviso=$id_aviso");
+                            }
+                        else
+                            {
+			$_SESSION['foto']=$foto;
+                            }
+                        $_SESSION['id_usuario']=$id_usuario;
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +51,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
             if ($_GET['res'] == 1) {
                 ?>     
                 <script>
-                    alert('Sus aviso se ha registrado correctamente');
+                    alert('Sus aviso se ha actualizado correctamente');
                 </script>
 
                 <?php
@@ -58,31 +76,34 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
             </div>
 
             <div class="panel panel-default col-lg-10 col-lg-offset-1" style="padding: 0; margin-bottom: 200px">
-                <div class="panel-heading">Publica tu aviso</div>
+                <div class="panel-heading">Edita tu aviso</div>
                 <div class="panel-body" >
-                        <form class="form-horizontal" id="form_usuario" method="POST" enctype="multipart/form-data" action="BO/procesar_aviso.php">
+                <form class="form-horizontal" id="form_usuario" method="POST" enctype="multipart/form-data" action="BO/actualizarAviso.php">
                     <div class="container col-lg-6" >
-                       
-                            <div class="form-group row">
+                            <div class="form-group row">   
                                 <label for="titulo" class="col-sm-3 col-form-label">Titulo de aviso</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="nombre" name="titulo" placeholder="Ingrese titulo del aviso">
+                                    <input type="text" class="form-control" id="nombre" name="titulo" value="<?php echo $id_titulo ?>">
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label for="titulo" class="col-sm-3 col-form-label">Categoria</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="ddlCategoria">
                                         <option>Seleccione tipo aviso</option>
                                         <?php
-                                        foreach ($sql_categoria as $key => $categoria) {
+                                        foreach ($sql_categoria as $key => $categoria) 
+                                        {
+                                            if ($categoria->id_categoria == $id_categoria) 
+                                            { ?>
+                                        <option value="<?php echo $categoria->id_categoria; ?>" selected="<?php $id_categoria?>" ><?php echo $categoria->nombre_categoria; ?></option>        
+                                           <?php }
+                                            else{
                                             ?>									
-                                            <option value="<?php echo $categoria->id_categoria; ?>"><?php echo $categoria->nombre_categoria; ?></option>
+                                        <option value="<?php echo $categoria->id_categoria; ?>" ><?php echo $categoria->nombre_categoria; ?></option>
                                             <?php
-                                        }
+                                        }}
                                         ?>
-
                                     </select>  
                                 </div>
                             </div>
@@ -92,31 +113,32 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
                             <div class="form-group row">
                                 <label for="resumen" class="col-sm-3 col-form-label">Resumen del aviso</label>
                                 <div class="col-sm-9">
-                                    <textarea style="resize:none" rows="2" class="form-control" name="resumen"  id="resumen" placeholder="Resumen general del aviso, aparecera en la busqueda" ></textarea>
+                                    <textarea style="resize:none" rows="2" class="form-control" name="resumen"  id="resumen"><?php echo $resumen; ?></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="descripcion" class="col-sm-3 col-form-label">Descripción del aviso</label>
                                 <div class="col-sm-9">
-                                    <textarea style="resize:none" rows="6" class="form-control" name="descripcion"  id="descripcion" placeholder="Descripcion detallada del aviso. se mostrara el usuario cuando vea el detalle del aviso" ></textarea>
+                                    <textarea style="resize:none" rows="6" class="form-control" name="descripcion"  id="descripcion"><?php echo $descripcion; ?></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="precio" class="col-sm-3 col-form-label">Precio</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="precio" name="precio" placeholder="$ Precio">
+                                    <input type="text" class="form-control" id="precio" name="precio" value="<?php echo $precio ?>">
                                 </div>
                             </div>
-
+                            <input type="hidden" name="id_aviso" value="<?php echo $id_aviso;?>" >
                             <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-lg btn-primary">Guardar Aviso</button>
-                                </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-3 col-md-offset-3">
                                     <a href="index.php" class="btn btn-lg btn-warning ">Cancelar</a>
                                 </div>
+                                <div class="col-sm-3 col-md-offset-2">
+                                    <button type="submit" class="btn btn-lg btn-primary">Guardar Aviso</button>
+                                </div>
+
                             </div>
                     </div>
                     <div class="col-lg-6">
@@ -130,17 +152,9 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
                             <span class='label label-info' id="upload-file-info"></span>
                         </div>
 
-                        <output id="list"></output>
+                        <output id="list"<img class="thumb" src="<?php echo $conf['path_files'].'/'.$id_usuario.'/'.$foto; ?>" title=""/></output>
                     </div>
-
                     </form>
-
-
-
-
-
-
-
                 </div>
             </div>   
 
