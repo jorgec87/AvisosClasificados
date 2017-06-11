@@ -2,7 +2,7 @@
         require_once '../include/include_valida_session.php';
         require_once '../config.php';
         require_once '../EasyPDO/conexionPDO.php';
-
+        date_default_timezone_set("Chile/Continental");
         $fecha_actual=date("Y-m-d H:i:s"); 
         $fecha=date("Y-m-d");
         
@@ -67,7 +67,7 @@
                        ':resumen' => $resumen,
                        ':descripcion' => $descripcion,
                        ':precio' => $precio,
-                       ':fecha_aviso' => $fecha,
+                       ':fecha_aviso' => $fecha_actual,
                        ':id_usu' => $id_usu,
                        ':categoria' => $categoria
                        
@@ -125,7 +125,7 @@
                        ':resumen' => $resumen,
                        ':descripcion' => $descripcion,
                        ':precio' => $precio,
-                       ':fecha_aviso' => $fecha,
+                       ':fecha_aviso' => $fecha_actual,
                        ':foto' => $nombre_img ,
                        ':id_usu' => $id_usu,
                        ':categoria' => $categoria

@@ -16,7 +16,8 @@
         
         $conf['name_server'] = $server;
         
-       
+        // NUMERO AVISOS X PAGINA -> PAGINACION
+        $conf['numero_pag'] = 3;
 
         //RUTA PATH DONDE SE GUARDAN LAS IMAGENES
 	$conf['path_files'] = "C:/xampp/htdocs/AvisosClasificados/img_avisos";

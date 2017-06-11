@@ -216,12 +216,25 @@ border-color: #464a4c;
 .tituloListaAvisos
 {
     font-weight: bold;
+    font-family: monospace;
+    font-style: italic;
     text-decoration: underline;
-    font-size: 20px;
+    font-size: 18px;
     color: #337ab7;
 }
 
 .textoAvisoNegrita
 {
+     font-family: monospace;
     font-weight: bold;  
+    font-size: 15px;
+}
+.precio{
+    font-size: 20px;
+    color: #d80000;
+     font-family: monospace;
+}
+.fecha{
+    font-size: 15px;
+      font-family: monospace;
 }

@@ -1,18 +1,29 @@
 <?php
 require_once './EasyPDO/conexionPDO.php';
+require_once './config.php';
+require_once './include/include_paginar.php';
 
-session_start();
-        
-$sql_aviso = $db->get_results("SELECT UPPER(titulo) titulo,
+
+    $conexion = new mysqli( $conf['db_hostname'], $conf['db_username'], $conf['db_password'], $conf['db_name']);
+    $conexion->query("SET NAMES 'utf8'");
+ 
+    $pagina       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1;
+    $enlaces      = ( isset( $_GET['enlaces'] ) ) ? $_GET['enlaces'] : 5;
+    $consulta      = "SELECT UPPER(titulo) titulo,
                                 (select nombre_categoria from anuncios_beta.categoria where id_categoria = CATEGORIA_id_categora) categoria,
                                 USUARIO_id_usuario,
                                 descripcion,
                                 precio,
                                 foto,
-                                DATE_FORMAT(fecha_aviso, '%d/%m/%Y') fecha_aviso,
+                                DATE_FORMAT(fecha_aviso, '%d/%m/%Y %r') fecha_aviso,
                                 id_aviso
-                                FROM anuncios_beta.aviso;");
+                                FROM anuncios_beta.aviso";
+    
+    $paginar  = new Paginar($conexion, $consulta,$conf['numero_pag']);
+    $resultados    = $paginar->getDatos($pagina);
 
+session_start();
+        
 ?>
 <!DOCTYPE html>
 <!--
@@ -67,6 +78,7 @@ and open the template in the editor.
 ?>
         
         </div>
+        
         <div class="container col-md-offset-1 col-md-11" id="Contenido">
             <div>
                 <img src="http://www.impactourbano.com.ar/images/banner-avisos-clasificados.jpg" class="img-responsive" id="fotoBanner"> 
@@ -78,15 +90,19 @@ and open the template in the editor.
             <div class="col-md-10">
                 <ul>
                     <h3>BUSQUEDA DE AVISOS CLASIFICADOS</h3>
-                    
-                       
+                   
+                        <div class="container"> 
+                            <ul class="pagination pull-right">
+                                 <?php echo $paginar->crearLinks( $enlaces); ?>
+                            </ul>
+                        </div>
                         <?php
-                        foreach ($sql_aviso as $key => $aviso) 
-                        {?>
+                        for( $i = 0; $i < count($resultados->datos); $i++ ):  
+                        ?>
                     <li class="row listaAvisos">                   
                         <div class="col-md-3">
                             <?php 
-                            if ($aviso->foto == null || $aviso->foto == '') 
+                            if ( $resultados->datos[$i]['foto'] == null || $resultados->datos[$i]['foto'] == '') 
                             {
                             ?>
                             <img src="http://icon-icons.com/icons2/79/PNG/256/misc_box_15274.png" class="imagenListaAvisos">
@@ -94,39 +110,45 @@ and open the template in the editor.
                             }else
                             {
                             ?>
-                            <img src="<?php echo 'http://'.$_SERVER['SERVER_NAME'].':82'?>/AvisosClasificados/img_avisos/<?php echo $aviso->USUARIO_id_usuario;?>/<?php echo $aviso->foto; ?>" class="imagenListaAvisos">                       
+                            <img src="<?php echo $conf['name_server'].'img_avisos/'.$_SESSION['id_cliente'].'/'.$resultados->datos[$i]['foto'] ?>" class="imagenListaAvisos">                       
                             <?php    
                             }
                             ?>                         
                         </div>
                         <div class="col-md-3 dashBorder">
-                            <p class="tituloListaAvisos"><?php echo $aviso->titulo;?></p>
+                            <p class="tituloListaAvisos"><?php echo $resultados->datos[$i]['titulo']?></p>
                             <br>
                             <p>
                                 <span class="textoAvisoNegrita">Fecha:</span><br> 
-                                <?php echo $aviso->fecha_aviso;?>
+                                <span class="fecha"> <?php echo $resultados->datos[$i]['fecha_aviso']?></span>
                             </p><br>
                             <p><span class="textoAvisoNegrita">Precio:</span><br> 
-                                $<?php echo $aviso->precio;?>
+                                <span class="precio">$<?php echo number_format($resultados->datos[$i]['precio'], 0, '.', '.');?></span>
                             </p>
                         </div>
                         <div class="col-md-6">
                             <p><span class="textoAvisoNegrita">Categoria:</span><br> 
-                                <?php echo $aviso->categoria;?>
+                                <span class="fecha"> <?php echo $resultados->datos[$i]['categoria']?></span>
                             </p>
                             <p>
                                 <span class="textoAvisoNegrita">Descripcion:</span><br>
-                                <?php echo $aviso->descripcion;?>
+                                <span class="fecha"> <?php echo $resultados->datos[$i]['descripcion']?></span>
+                                
                             </p>
                         </div>
                         <!-- <div class="col-md-1">
                             <button id="botonVer">Ver</button> 
                              </div> -->
                     </li>                                              
-                        <?php              
-                        }?>	       
+                         <?php endfor; ?>	       
                 </ul>  
             </div> 
+             
+        </div>
+        <div class="container"> 
+            <ul class="pagination pull-right">
+                 <?php echo $paginar->crearLinks( $enlaces); ?>
+            </ul>
         </div>
 <?php require_once './include/include_footer.php';?>
     </body>
