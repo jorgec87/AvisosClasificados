@@ -9,7 +9,7 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        
+        <link href="css/toastr.min.css" rel="stylesheet" type="text/css"/>
         <style>
            .form-control.error {
              border: 1px dotted #cc5965;
@@ -21,26 +21,7 @@
            }
             
         </style>
- <?php 
-         if(isset($_GET['res'])) {
-            if($_GET['res']==1){
-              ?>     
-             <script>
-                   alert('Sus datos han sido ingresados correctamente');
-             </script>
-        
-               <?php
-            } elseif($_GET['res']==2){
-                ?>     
-             <script>
-                   alert('Error!, Su correo ya esta registrado');
-             </script>
-        
-               <?php
-            } 
-        }
- ?>
-        
+ 
      
     </head>
     <body>
@@ -134,6 +115,7 @@
          <!-- FIN FOOTER-->
          
      <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+     <script src="js/toastr.min.js" type="text/javascript"></script>
     </body>
 </html>
 
@@ -192,3 +174,59 @@ $("#form_usuario").validate({
            
        });
 </script>
+ <?php 
+         if(isset($_GET['res'])) {
+            if($_GET['res']==1){
+              ?>     
+             <script>
+                       $(document).ready(function(){
+                        toastr.options = {
+                      "closeButton": true,
+                      "debug": true,
+                      "progressBar": true,
+                      "preventDuplicates": false,
+                      "positionClass": "toast-top-center",
+                      "onclick": null,
+                      "showDuration": "400",
+                      "hideDuration": "600",
+                      "timeOut": "2500",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    };
+                   
+                 toastr.success("Datos registrados Correctamente!");
+                           });
+             </script>
+        
+               <?php
+            } elseif($_GET['res']==2){
+                ?>     
+             <script>
+                      toastr.options = {
+                              "closeButton" : true,
+                              "debug": false,
+                              "progressBar": true,
+                              "preventDuplicates": false,
+                              "positionClass": "toast-top-center",
+                              "onclick": null,
+                              "showDuration": "400",
+                              "hideDuration": "1000",
+                              "timeOut": "7000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                            };
+                          toastr.error("Error!, Su correo ya esta registrado", "Favor verificar!");
+                
+             </script>
+        
+               <?php
+            } 
+        }
+ ?>
+       

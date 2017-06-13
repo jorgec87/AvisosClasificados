@@ -10,6 +10,7 @@
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <link href="css/toastr.min.css" rel="stylesheet" type="text/css"/>
            <style>
            .form-control.error {
              border: 1px dotted #cc5965;
@@ -21,17 +22,7 @@
            }
             
         </style>
-        <?php 
-         if(isset($_GET['res'])) {
-            if($_GET['res']==1){
-              ?>     
-             <script>
-                   alert('Sus datos han sido actualizados correctamente');
-             </script>
-               <?php
-            } 
-        }
- ?>
+ 
     </head>
     <body>
          <?php
@@ -129,7 +120,7 @@
     </body>
 </html>
 <script src="js/jquery.validate.min.js" type="text/javascript"></script>
-
+<script src="js/toastr.min.js" type="text/javascript"></script>
 
 <script>
         $(document).ready(function(){
@@ -185,3 +176,34 @@ jQuery.extend(jQuery.validator.messages, {
            
        });
 </script>
+       <?php 
+         if(isset($_GET['res'])) {
+            if($_GET['res']==1){
+              ?>     
+             <script>
+                            $(document).ready(function(){
+                        toastr.options = {
+                      "closeButton": true,
+                      "debug": true,
+                      "progressBar": true,
+                      "preventDuplicates": false,
+                      "positionClass": "toast-top-center",
+                      "onclick": null,
+                      "showDuration": "400",
+                      "hideDuration": "600",
+                      "timeOut": "2500",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    };
+                   
+                 toastr.success("Sus datos han sido actualizados correctamente!");
+                           });
+               
+             </script>
+               <?php
+            } 
+        }
+ ?>

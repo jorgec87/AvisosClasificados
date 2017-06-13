@@ -16,7 +16,7 @@ $sql_avisos = $db->get_results("SELECT titulo,
 //         Fin consultas 
 ?>
 <!DOCTYPE html>
-<html>select * from anuncios_beta.aviso
+<html>
     <head>
         <title>Publicar Aviso</title>
         <meta charset="UTF-8">
@@ -26,7 +26,8 @@ $sql_avisos = $db->get_results("SELECT titulo,
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        
+         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+         <link href="css/toastr.min.css" rel="stylesheet" type="text/css"/>
  </head>
     <body>
         <?php require_once './include/include_header_private_1.php'; ?>
@@ -56,8 +57,21 @@ $sql_avisos = $db->get_results("SELECT titulo,
                         <td><?php echo $aviso->categoria; ?></td>
                         <td><?php echo $fecha_actual ?></td>
                         <td>$ <?php echo $aviso->precio; ?></td>
-                        <td><img src="<?php echo 'http://'.$_SERVER['SERVER_NAME'].'/AvisosClasificados/img_avisos/'.$_SESSION['id_cliente'].'/'.$aviso->foto ?>" alt="Sin Imagen" width="100" height="100" class="img-responsive"></td>
-                        <td>
+                        <?php 
+                            if ( $aviso->foto  == null || $aviso->foto  == '') 
+                            {
+                            ?>
+                          <td>  <img src="http://icon-icons.com/icons2/79/PNG/256/misc_box_15274.png" alt="Sin Imagen" width="100" height="100"  ></td>
+                            <?php    
+                            }else
+                            {
+                            ?>
+                           <td><img src="<?php echo $conf['name_server'].'img_avisos/'.$_SESSION['id_cliente'].'/'.$aviso->foto ?>" alt="Sin Imagen" width="100" height="100" class="img-responsive"></td>                    
+                            <?php    
+                            }
+                            ?>      
+                       
+                        <td>                
                             <a href="editarAviso.php?id=<?php echo $aviso->id_aviso; ?>" class="btn btn-block  btn-warning"><span class="glyphicon glyphicon-pencil"></span>  Editar</a>
                             <a href="BO/eliminar_aviso.php?id=<?php echo $aviso->id_aviso; ?>" class="btn btn-block btn-danger "><span class="glyphicon glyphicon-remove"></span>  Eliminar</a>
                         </td>
@@ -74,25 +88,65 @@ $sql_avisos = $db->get_results("SELECT titulo,
 
         </div>
         <?php require_once './include/include_footer.php'; ?>
+
+    </body>
+    <script src="js/toastr.min.js" type="text/javascript"></script>
+</html>
+
  <?php
         if (isset($_GET['res'])) {
             if ($_GET['res'] == 1) {
                 ?>     
                 <script>
-                    alert('Aviso Eliminado Correctamente');
+                    
+                     toastr.options = {
+                      "closeButton": true,
+                      "debug": true,
+                      "progressBar": true,
+                      "preventDuplicates": false,
+                      "positionClass": "toast-top-center",
+                      "onclick": null,
+                      "showDuration": "400",
+                      "hideDuration": "600",
+                      "timeOut": "2500",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    };
+                   
+                 toastr.success("Aviso Eliminado Correctamente!");
+                           
                 </script>
 
                 <?php
             } elseif ($_GET['res'] == 2) {
                 ?>     
                 <script>
-                   alert('Aviso Editado Correctamente');
+                      $(document).ready(function(){
+                        toastr.options = {
+                      "closeButton": true,
+                      "debug": true,
+                      "progressBar": true,
+                      "preventDuplicates": false,
+                      "positionClass": "toast-top-center",
+                      "onclick": null,
+                      "showDuration": "400",
+                      "hideDuration": "600",
+                      "timeOut": "2500",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    };
+                   
+                 toastr.success("Aviso Editado Correctamente!");
+                           });
                 </script>
 
                 <?php
             }
         }
         ?>
-    </body>
-</html>
-

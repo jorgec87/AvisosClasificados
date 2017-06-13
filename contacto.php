@@ -17,6 +17,7 @@ and open the template in the editor.
         <link rel="shortcut icon" href="http://2.bp.blogspot.com/-ZJNw3suLePk/VSEkX0oyQ2I/AAAAAAAAAZA/6QkRrUjHLNs/s1600/segundamano.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <link href="css/toastr.min.css" rel="stylesheet" type="text/css"/>
       <style>
          
               .form-control.error {
@@ -28,25 +29,7 @@ and open the template in the editor.
             margin-left: 5px;
            }
         </style>
-        <?php
-        if (isset($_GET['res'])) {
-            if ($_GET['res'] == 1) {
-                ?>     
-                <script>
-                    alert('Sus Consulta se ha enviado correctamente');
-                </script>
-
-                <?php
-            } elseif ($_GET['res'] == 2) {
-                ?>     
-                <script>
-                    alert('Error!,');
-                </script>
-
-                <?php
-            }
-        }
-        ?>
+   
     </head>
     <body>
  <?php
@@ -115,7 +98,7 @@ and open the template in the editor.
 </html>
 
 <script src="js/jquery.validate.min.js" type="text/javascript"></script>
-
+<script src="js/toastr.min.js" type="text/javascript"></script>
 <script>
  $(document).ready(function(){
    
@@ -163,3 +146,57 @@ $("#form_contacto").validate({
            
        });
 </script>
+     <?php
+        if (isset($_GET['res'])) {
+            if ($_GET['res'] == 1) {
+                ?>     
+                <script>
+                            $(document).ready(function(){
+                        toastr.options = {
+                      "closeButton": true,
+                      "debug": true,
+                      "progressBar": true,
+                      "preventDuplicates": false,
+                      "positionClass": "toast-top-center",
+                      "onclick": null,
+                      "showDuration": "400",
+                      "hideDuration": "600",
+                      "timeOut": "2500",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    };
+                   
+                 toastr.success("Su Consulta se ha enviado correctamente!");
+                           });
+                </script>
+
+                <?php
+            } elseif ($_GET['res'] == 2) {
+                ?>     
+                <script>
+                   toastr.options = {
+                              "closeButton" : true,
+                              "debug": false,
+                              "progressBar": true,
+                              "preventDuplicates": false,
+                              "positionClass": "toast-top-center",
+                              "onclick": null,
+                              "showDuration": "400",
+                              "hideDuration": "1000",
+                              "timeOut": "7000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                            };
+                          toastr.error("Error!, Consulta no enviada", "Favor verificar!");
+                </script>
+
+                <?php
+            }
+        }
+        ?>

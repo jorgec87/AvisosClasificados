@@ -62,7 +62,7 @@
                        resumen=:resumen,
                        descripcion=:descripcion,
                        precio=:precio,
-                       fecha_actual=:fecha_aviso,
+                       fecha_aviso=:fecha_aviso,
                        USUARIO_id_usuario=:id_usu,
                        CATEGORIA_id_categora=:categoria
                        WHERE id_aviso=:id_aviso;
@@ -74,26 +74,16 @@
                        ':resumen' => $resumen,
                        ':descripcion' => $descripcion,
                        ':precio' => $precio,
-                       ':fecha_aviso' => $fecha,
+                       ':fecha_aviso' => $fecha_actual,
                        ':id_usu' => $id_usu,
                        ':categoria' => $categoria              
                ));
               
-              // Se inicia la sesion y se crean las variables de sesion
-			session_start();
-                        $_SESSION['id_aviso']=$id_aviso;
-                        $_SESSION['id_categoria']=$categoria;
-			$_SESSION['titulo']=$titulo;
-			$_SESSION['resumen']=$resumen;
-			$_SESSION['descripcion']=$descripcion;
-			$_SESSION['precio']=$precio;
-                        $_SESSION['fecha_aviso']=$fecha_actual;
-                        $_SESSION['id_usuario']=$id_usu;
-              
-              header("location: ../editarAviso.php?res=1");
+            
+              header("location: ../misAvisos.php?res=2");
                  
         }else{
-            // Recibo los datos de la imagen
+              // Recibo los datos de la imagen
            
             $nombre_tmp = $_FILES['imgProducto']['tmp_name'];
             $tipo = $_FILES['imgProducto']['type'];
@@ -131,6 +121,7 @@
                        resumen=:resumen,
                        descripcion=:descripcion,
                        precio=:precio,
+                       fecha_aviso=:fecha,
                        foto=:foto,
                        USUARIO_id_usuario=:id_usu,
                        CATEGORIA_id_categora=:categoria
@@ -142,25 +133,14 @@
                        ':resumen' => $resumen,
                        ':descripcion' => $descripcion,
                        ':precio' => $precio,
-                       ':precio' => $fecha,
+                       ':fecha' => $fecha_actual,
                        ':foto' => $nombre_img ,
                        ':id_usu' => $id_usu,
                        ':categoria' => $categoria                      
                ));
                // fin actualizacion tabla aviso
                
-                             // Se inicia la sesion y se crean las variables de sesion
-			session_start();
-                        $_SESSION['id_aviso']=$id_aviso;
-                        $_SESSION['id_categoria']=$categoria;
-			$_SESSION['titulo']=$titulo;
-			$_SESSION['resumen']=$resumen;
-			$_SESSION['descripcion']=$descripcion;
-			$_SESSION['precio']=$precio;
-                        $_SESSION['fecha_aviso']=$fecha;
-                        $_SESSION['foto']=$nombre_img;
-                        $_SESSION['id_usuario']=$id_usu;
-               
+                  
                   header("location: ../misAvisos.php?res=2");
                  
                 }

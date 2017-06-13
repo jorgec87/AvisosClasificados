@@ -19,6 +19,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <link href="css/toastr.min.css" rel="stylesheet" type="text/css"/>
         <style>
             .thumb {
                 height: 300px;
@@ -137,25 +138,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
         <?php require_once './include/include_footer.php'; ?>
 
         
-           <?php
-        if (isset($_GET['res'])) {
-            if ($_GET['res'] == 1) {
-                ?>     
-                <script>
-                    alert('Sus aviso se ha registrado correctamente');
-                </script>
-
-                <?php
-            } elseif ($_GET['res'] == 2) {
-                ?>     
-                <script>
-                    alert('Error!,');
-                </script>
-
-                <?php
-            }
-        }
-        ?>
+      
         <script>
             function archivo(evt) {
                 var files = evt.target.files; // FileList object
@@ -183,7 +166,7 @@ $sql_categoria = $db->get_results("SELECT * FROM anuncios_beta.categoria");
             document.getElementById('files').addEventListener('change', archivo, false);
         </script>
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
-
+        <script src="js/toastr.min.js" type="text/javascript"></script>
 
 <script>
  $(document).ready(function(){
@@ -240,4 +223,41 @@ $("#form_aviso").validate({
     </body>
 </html>
 
+     <?php
+        if (isset($_GET['res'])) {
+            if ($_GET['res'] == 1) {
+                ?>     
+                <script>
+                            $(document).ready(function(){
+                        toastr.options = {
+                      "closeButton": true,
+                      "debug": true,
+                      "progressBar": true,
+                      "preventDuplicates": false,
+                      "positionClass": "toast-top-center",
+                      "onclick": null,
+                      "showDuration": "400",
+                      "hideDuration": "600",
+                      "timeOut": "2500",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    };
+                   
+                 toastr.success("Su aviso se ha registrado correctamente!");
+                           });
+                 </script>
 
+                <?php
+            } elseif ($_GET['res'] == 2) {
+                ?>     
+                <script>
+                    alert('Error!,');
+                </script>
+
+                <?php
+            }
+        }
+        ?>

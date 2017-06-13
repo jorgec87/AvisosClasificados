@@ -32,6 +32,7 @@ $sql_aviso = $db->get_results("SELECT * FROM anuncios_beta.aviso where id_aviso 
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+       
         <style>
             .thumb {
                 height: 300px;
@@ -154,7 +155,21 @@ $sql_aviso = $db->get_results("SELECT * FROM anuncios_beta.aviso where id_aviso 
                             <span class='label label-info' id="upload-file-info"></span>
                         </div>
 
-                        <output id="list" ><img class="thumb" src="<?php echo $conf['name_server'].'img_avisos/'.$_SESSION['id_cliente'].'/'.$sql_aviso[0]->foto ?>" alt="Sin Imagen"/></output>
+                        <output id="list" >
+                             <?php 
+                            if ( $sql_aviso[0]->foto  == null || $sql_aviso[0]->foto  == '') 
+                            {
+                            ?>
+                          <td>  <img src="http://icon-icons.com/icons2/79/PNG/256/misc_box_15274.png" alt="Sin Imagen" width="300" height="300"  ></td>
+                            <?php    
+                            }else
+                            {
+                            ?>
+                           <td><img src="<?php echo $conf['name_server'].'img_avisos/'.$_SESSION['id_cliente'].'/'.$sql_aviso[0]->foto ?>" alt="Sin Imagen" width="100" height="100" class="img-responsive"></td>                    
+                            <?php    
+                            }
+                            ?>    
+                        </output>
                     </div>
                     </form>
                 </div> 
