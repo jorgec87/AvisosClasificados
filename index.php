@@ -1,7 +1,7 @@
 <?php
 require_once './EasyPDO/conexionPDO.php';
 require_once './config.php';
-require_once './include/include_paginar.php';
+//require_once './include/include_paginar.php';
 
 
     $conexion = new mysqli( $conf['db_hostname'], $conf['db_username'], $conf['db_password'], $conf['db_name']);
@@ -19,8 +19,8 @@ require_once './include/include_paginar.php';
                                 id_aviso
                                 FROM anuncios_beta.aviso";
     
-    $paginar  = new Paginar($conexion, $consulta,$conf['numero_pag']);
-    $resultados    = $paginar->getDatos($pagina);
+  //  $paginar  = new Paginar($conexion, $consulta,$conf['numero_pag']);
+   // $resultados    = $paginar->getDatos($pagina);
 
 session_start();
         
